@@ -3,7 +3,7 @@ Name: Yousef Al-Jazzazi
 netID: ya2225
 Asssignment 2 for CPE class with prof. Mohammad Eid
 Date: November 13th 2022
-Project name:  Computer Engineering Case Study – Image Features Extraction using Gray Level Cooccurrence Matrix (GLCM)
+Project name:  Computer Engineering Case Study ï¿½ Image Features Extraction using Gray Level Cooccurrence Matrix (GLCM)
 Description: The program takes a file that contains the pixel information of an image and use changes it to Gray level coocurrence Matrix 
 to find some of the features of the image
 
@@ -47,10 +47,16 @@ int main() {
 	//Initialize GLCM and normalizedGLCM with dimension max +1, and initalize all the values to be 0 
 	GLCM = new int* [max + 1];
 	normalizedGLCM = new double* [max + 1];
-	for (int i = 0; i < max + 1; i++) {
-		GLCM[i] = new int[max + 1] {0};
-		normalizedGLCM[i] = new double[max + 1] {0};
-	}
+	  for (int i = 0; i < max + 1; i++) {
+        GLCM[i] = new int[max + 1];
+        normalizedGLCM[i] = new double[max + 1];
+		for(int j=0; j< max + 1; j++){
+			GLCM[i][j]=0;
+        	normalizedGLCM[i][j] =0;
+		}
+    }
+
+
 	
 	//The menu  will be called continuesly until repeat is false which is when the user choice is 4
 	while (choice != "4") {
@@ -99,9 +105,12 @@ int main() {
 			delete[] image[i];
 		delete[] image;
 		//Freeing the GLCM and normalizedGLCM arrays
-		for (int i = 0; i < max + 1; i++)
-			delete[] GLCM[i], normalizedGLCM[i];
-		delete[] GLCM, normalizedGLCM;
+		for (int i = 0; i < max + 1; i++) {
+    		delete[] GLCM[i];
+    		delete[] normalizedGLCM[i];
+		}
+		delete[] GLCM;
+		delete[] normalizedGLCM;
 
 
 	return(0);
